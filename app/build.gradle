@@ -29,7 +29,7 @@ dependencies {
 
     // how to release my library
     compile 'com.github.JunsuLime:TestLibrary:v1.0.0'
-
+    compile 'com.github.JunsuLime:Android-RecyclerView-SectionAdapter:v0.1.0'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 }
