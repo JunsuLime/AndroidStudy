@@ -48,7 +48,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         List<Fragment> fragmentList = new ArrayList<>();
 
         // 첫 if 문 코드는 그냥 그렇구나 하고 치면 됨
-        if (existFragments == null || existFragments.size() == 0) {
+        if (existFragments != null && existFragments.size() != 0) {
             boolean isExist = false;
             for (Fragment existFragment : existFragments) {
                 if (existFragment instanceof FirstFragment) {
