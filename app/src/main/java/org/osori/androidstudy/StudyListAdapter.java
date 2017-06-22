@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.osori.androidstudy.week0.PatternStudyActivity;
 import org.osori.androidstudy.week1.CustomDialogActivity;
 import org.osori.androidstudy.week2.ViewPagerActivity;
 import org.osori.androidstudy.week3.CatActivity;
@@ -31,6 +32,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
 
     private List<Class> studyList = new ArrayList<>();
     private Class[] studyArray = {
+            PatternStudyActivity.class,
             CustomDialogActivity.class,
             ViewPagerActivity.class,
             CatActivity.class,
@@ -79,7 +81,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
         }
         private void bind(Class study) {
             studyActivity = study;
-            studyTitleView.setText(study.getName());
+            studyTitleView.setText(study.getSimpleName());
         }
     }
 }

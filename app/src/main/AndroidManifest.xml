@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".week0.PatternStudyActivity" />
         <activity android:name=".week1.CustomDialogActivity" />
         <activity android:name=".week2.ViewPagerActivity" />
         <activity android:name=".week3.CatActivity" />
