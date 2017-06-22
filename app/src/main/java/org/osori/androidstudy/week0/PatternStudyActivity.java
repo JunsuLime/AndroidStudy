@@ -24,8 +24,9 @@ public class PatternStudyActivity extends AppCompatActivity implements ActivityC
     private static final String TAG = PatternStudyActivity.class.getSimpleName();
 
     private Button itemAddButton;
-    private RecyclerView itemListView;
 
+    // itemListView 는 editText 와 같다고 생각하면 된다.
+    private RecyclerView itemListView;
     private RecyclerViewAdapter adapter;
 
     private ActivityContract.Presenter presenter;
@@ -37,8 +38,6 @@ public class PatternStudyActivity extends AppCompatActivity implements ActivityC
 
         itemAddButton = (Button) findViewById(R.id.add_item_button);
         itemListView = (RecyclerView) findViewById(R.id.item_list_view);
-
-        List<Integer> dataList = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new RecyclerViewAdapter(this, this);
@@ -59,6 +58,10 @@ public class PatternStudyActivity extends AppCompatActivity implements ActivityC
     @Override
     public void addItem() {
         Log.d(TAG, "addItem is called");
+        // 여기서 adapter.addItem 이 납득이 되는 이유
+        // editText 에 글을 쓴다고 생각해보자
+        // data 를 넣는 것 이긴 하지만 이것은 내가 관리하는 data 는 아니다.
+        // 그렇기 때문에 adapter.addItem() 는 납득 할 수 있는 행동이다.
         adapter.addItem();
         adapter.notifyDataSetChanged();
     }
