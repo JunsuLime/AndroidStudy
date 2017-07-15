@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.osori.androidstudy">
 
+    <!--In week4, this permission is needed-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
@@ -25,6 +26,7 @@
         <activity android:name=".week4.FloatingViewStartActivity" />
 
 
+        <!--service class for week4-->
         <service
             android:name=".week4.FloatingViewService"
             android:enabled="true"

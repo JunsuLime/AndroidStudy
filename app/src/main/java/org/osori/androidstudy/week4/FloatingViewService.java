@@ -32,7 +32,7 @@ public class FloatingViewService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        //Add the view to the window.
+        // Add the view to the window.
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,

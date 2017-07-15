@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 public class FloatingViewStartActivity extends AppCompatActivity {
 
-    private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
+    // your own request code, put number what you want
+    private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2017;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
