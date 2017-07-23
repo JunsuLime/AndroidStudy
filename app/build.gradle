@@ -32,4 +32,7 @@ dependencies {
     compile 'com.github.JunsuLime:Android-RecyclerView-SectionAdapter:v0.1.0'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+
+    // week5 image load library
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

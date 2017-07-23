@@ -14,6 +14,7 @@ import org.osori.androidstudy.week1.CustomDialogActivity;
 import org.osori.androidstudy.week2.ViewPagerActivity;
 import org.osori.androidstudy.week3.CatActivity;
 import org.osori.androidstudy.week4.FloatingViewStartActivity;
+import org.osori.androidstudy.week5.GalleryActivity;
 import org.osori.testlibrary.StackTracer;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
             ViewPagerActivity.class,
             CatActivity.class,
             FloatingViewStartActivity.class,
+            GalleryActivity.class,
     };
 
     public StudyListAdapter(Context context) {

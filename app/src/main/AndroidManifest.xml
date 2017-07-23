@@ -4,8 +4,10 @@
 
     <!--In week4, this permission is needed-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".AndroidApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,6 +26,7 @@
         <activity android:name=".week2.ViewPagerActivity" />
         <activity android:name=".week3.CatActivity" />
         <activity android:name=".week4.FloatingViewStartActivity" />
+        <activity android:name=".week5.GalleryActivity" />
 
 
         <!--service class for week4-->
