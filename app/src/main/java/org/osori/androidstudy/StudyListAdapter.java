@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.osori.androidstudy.callapp.DialActivity;
 import org.osori.androidstudy.week0.PatternStudyActivity;
 import org.osori.androidstudy.week1.CustomDialogActivity;
 import org.osori.androidstudy.week2.ViewPagerActivity;
@@ -40,6 +41,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
             CatActivity.class,
             FloatingViewStartActivity.class,
             GalleryActivity.class,
+            DialActivity.class,
     };
 
     public StudyListAdapter(Context context) {

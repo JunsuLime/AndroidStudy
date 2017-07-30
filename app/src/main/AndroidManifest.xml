@@ -3,6 +3,7 @@
     package="org.osori.androidstudy">
 
     <!--In week4, this permission is needed-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -27,6 +28,7 @@
         <activity android:name=".week3.CatActivity" />
         <activity android:name=".week4.FloatingViewStartActivity" />
         <activity android:name=".week5.GalleryActivity" />
+        <activity android:name=".callapp.DialActivity" />
 
 
         <!--service class for week4-->
