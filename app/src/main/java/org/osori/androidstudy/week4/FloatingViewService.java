@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +19,8 @@ import org.osori.androidstudy.R;
  */
 
 public class FloatingViewService extends Service {
+
+    private static final String TAG = FloatingViewService.class.getSimpleName();
 
     private WindowManager mWindowManager;
     private View mFloatingView;
@@ -64,7 +67,7 @@ public class FloatingViewService extends Service {
                         //get the touch location
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
-                        return true;
+                        break;
                     case MotionEvent.ACTION_MOVE:
                         //Calculate the X and Y coordinates of the view.
                         params.x = initialX + (int) (event.getRawX() - initialTouchX);
@@ -72,9 +75,16 @@ public class FloatingViewService extends Service {
 
                         //Update the layout with new X & Y coordinate
                         mWindowManager.updateViewLayout(mFloatingView, params);
-                        return true;
+                        break;
                 }
                 return false;
+            }
+        });
+
+        mFloatingView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick mFloatingView is done");
             }
         });
 
