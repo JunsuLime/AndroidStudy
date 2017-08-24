@@ -33,6 +33,7 @@ dependencies {
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 
-    // week5 image load library
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    // Image loading library glide
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }

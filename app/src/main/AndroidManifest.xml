@@ -28,6 +28,7 @@
         <activity android:name=".week3.CatActivity" />
         <activity android:name=".week4.FloatingViewStartActivity" />
         <activity android:name=".week5.GalleryActivity" />
+        <activity android:name=".week6.IntentTestActivity" />
         <activity android:name=".callapp.DialActivity" />
 
 

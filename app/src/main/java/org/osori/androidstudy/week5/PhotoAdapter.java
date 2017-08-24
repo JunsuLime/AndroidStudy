@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.osori.androidstudy.GlideApp;
 import org.osori.androidstudy.R;
 
 import java.util.ArrayList;
@@ -84,6 +85,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
 
         private void bind(Photo photo) {
             this.photo = photo;
+//            GlideApp
 
             Glide.with(mContext).load(photo.getPath()).into(photoImage);
             photoPath.setText(photo.getPath());

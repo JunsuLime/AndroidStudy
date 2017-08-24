@@ -1,4 +1,4 @@
-package org.osori.androidstudy;
+package org.osori.androidstudy.week6;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,14 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.osori.androidstudy.callapp.DialActivity;
-import org.osori.androidstudy.week0.PatternStudyActivity;
-import org.osori.androidstudy.week1.CustomDialogActivity;
-import org.osori.androidstudy.week2.ViewPagerActivity;
-import org.osori.androidstudy.week3.CatActivity;
-import org.osori.androidstudy.week4.FloatingViewStartActivity;
-import org.osori.androidstudy.week5.GalleryActivity;
-import org.osori.androidstudy.week6.IntentTestActivity;
+import org.osori.androidstudy.MainActivity;
+import org.osori.androidstudy.R;
+import org.osori.androidstudy.Utils;
 import org.osori.testlibrary.StackTracer;
 
 import java.util.ArrayList;
@@ -24,29 +19,23 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by junsu on 2017-05-17.
+ * Created by junsu on 2017-08-24.
  */
 
-public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.StudyViewHolder> {
+public class IntentTestAdapter extends RecyclerView.Adapter<IntentTestAdapter.StudyViewHolder> {
 
-    private final String TAG = "StudyListAdapter";
+    private final String TAG = IntentTestAdapter.class.getSimpleName();
 
     private Context mContext;
     private LayoutInflater mInflater;
 
-    private List<Class> studyList = new ArrayList<>();
-    private Class[] studyArray = {
-            PatternStudyActivity.class,
-            CustomDialogActivity.class,
-            ViewPagerActivity.class,
-            CatActivity.class,
-            FloatingViewStartActivity.class,
-            GalleryActivity.class,
-            DialActivity.class,
-            IntentTestActivity.class,
+    private List<Integer> studyList = new ArrayList<>();
+    private Integer[] studyArray = {
+            Intent.FLAG_ACTIVITY_CLEAR_TOP,
+            Intent.FLAG_ACTIVITY_CLEAR_TASK,
     };
 
-    public StudyListAdapter(Context context) {
+    public IntentTestAdapter(Context context) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
 
@@ -60,19 +49,25 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
 
     @Override
     public void onBindViewHolder(StudyViewHolder holder, int position) {
-        holder.bind(studyList.get(position));
+        if (position == 0) {
+            Intent intent = new Intent(mContext, MainActivity.class);
+            holder.bind(intent.getFlags());
+        }
+        else {
+            holder.bind(studyList.get(position - 1));
+        }
     }
 
     @Override
     public int getItemCount() {
         Log.d(TAG, "getItemCount is called: " + studyList.size());
-        return studyList.size();
+        return studyList.size() + 1;
     }
 
     class StudyViewHolder extends RecyclerView.ViewHolder {
 
         TextView studyTitleView;
-        Class studyActivity;
+        int intentFlag;
 
         public StudyViewHolder(View itemView) {
             super(itemView);
@@ -80,16 +75,17 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, studyActivity);
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.setFlags(intentFlag);
                     mContext.startActivity(intent);
 
                     StackTracer.printTrace(TAG);
                 }
             });
         }
-        private void bind(Class study) {
-            studyActivity = study;
-            studyTitleView.setText(study.getSimpleName());
+        private void bind(int intentFlag) {
+            this.intentFlag = intentFlag;
+            studyTitleView.setText(Utils.getFlagInfo(intentFlag));
         }
     }
 }
