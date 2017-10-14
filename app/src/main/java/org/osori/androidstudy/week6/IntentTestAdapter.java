@@ -32,7 +32,7 @@ public class IntentTestAdapter extends RecyclerView.Adapter<IntentTestAdapter.St
     private List<Integer> studyList = new ArrayList<>();
     private Integer[] studyArray = {
             Intent.FLAG_ACTIVITY_CLEAR_TOP,
-            Intent.FLAG_ACTIVITY_CLEAR_TASK,
+            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK,
     };
 
     public IntentTestAdapter(Context context) {
