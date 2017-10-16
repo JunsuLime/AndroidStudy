@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import org.osori.androidstudy.R;
  * 4) LayoutInflate
  * 5) Get Device system service
  * 6) Access on Device storage
+ * 7) Get resource (drawable, string, color)
  */
 
 public class WhatIsContextActivity extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class WhatIsContextActivity extends AppCompatActivity {
     private Button startActivityButton;
     private Button sendBroadcastButton;
     private Button inflateButton;
+    private Button getResourceButton;
 
     private BroadcastReceiver receiver;
 
@@ -87,14 +90,22 @@ public class WhatIsContextActivity extends AppCompatActivity {
         registerReceiver(receiver, intentFilter);
 
 
-        // inflate 한 layout 을 현재 layout 에 add 하기 위해 현재 layout 을 가져옴
-        container = (LinearLayout) findViewById(R.id.what_is_context_container);
+        // inflate 한 layout 을 현재 layout 에 add 하기 위해 현재 layout 을 가져옴옴
+       container = (LinearLayout) findViewById(R.id.what_is_context_container);
 
         inflateButton = (Button) findViewById(R.id.context_inflate_button);
         inflateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inflateLayout();
+            }
+        });
+
+        getResourceButton = (Button) findViewById(R.id.context_get_resource_button);
+        getResourceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStringResource();
             }
         });
     }
@@ -140,5 +151,16 @@ public class WhatIsContextActivity extends AppCompatActivity {
 
         // inflate 가 잘 되었음을 테스트 하기 위해 addView 까지 했다.
         container.addView(view);
+    }
+
+    private void getStringResource() {
+        // 여기서는 string resource 가져오는 예제만 했지만
+        // res 안에 선언 되어있는 모든 resource 를 가지고 올 수 있다.
+        // "android drawable 가져오기" 이런 식으로 검색하면 다 나오니까 찾아서 쓰면 된다.
+
+        // getString 또한 Context 가 가지고 있는 method 이다.
+        String appName = getString(R.string.app_name);
+
+        Toast.makeText(this, appName, Toast.LENGTH_SHORT).show();
     }
 }
