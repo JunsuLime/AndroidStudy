@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.osori.androidstudy.R;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by junsu on 2017-10-14.
@@ -47,11 +56,16 @@ public class WhatIsContextActivity extends AppCompatActivity {
     private Button sendBroadcastButton;
     private Button inflateButton;
     private Button getResourceButton;
+    private Button accessStorageReadButton;
+    private Button accessStorageWriteButton;
+    private Button accessStorageDeleteButton;
 
     private BroadcastReceiver receiver;
 
     private static final String ACTION_TEST = "osori.test_action";
     private static final String INTENT_TEST = "osori.test_key";
+
+    private static final String FILE_NAME = "new_file.txt";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,6 +122,29 @@ public class WhatIsContextActivity extends AppCompatActivity {
                 getStringResource();
             }
         });
+
+        accessStorageReadButton = (Button) findViewById(R.id.context_get_device_storage_read_button);
+        accessStorageWriteButton = (Button) findViewById(R.id.context_get_device_storage_write_button);
+        accessStorageDeleteButton = (Button) findViewById(R.id.context_get_device_storage_delete_button);
+
+        accessStorageReadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readStorage();
+            }
+        });
+        accessStorageWriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                writeOnStorage();
+            }
+        });
+        accessStorageDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteFileAtStorage();
+            }
+        });
     }
 
     @Override
@@ -162,5 +199,62 @@ public class WhatIsContextActivity extends AppCompatActivity {
         String appName = getString(R.string.app_name);
 
         Toast.makeText(this, appName, Toast.LENGTH_SHORT).show();
+    }
+
+    private void readStorage() {
+        // getExternalFilesDir method 는 Activity 가 가지고 있는 method 이며
+        // Context 에 abstract method 로 정의 되어 있다.
+        File docsDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File file = new File(docsDir, FILE_NAME);
+
+        if (file.exists()) {
+            try {
+                FileReader reader = new FileReader(file);
+                BufferedReader bReader = new BufferedReader(reader);
+
+                String text = bReader.readLine();
+                Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+
+                reader.close();
+            } catch (FileNotFoundException e) {
+
+            } catch (IOException e) {
+
+            }
+        }
+        else {
+            Toast.makeText(this, "Write plz", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void writeOnStorage() {
+        File docsDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File file = new File(docsDir, FILE_NAME);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write("fee gone");
+            Toast.makeText(this, "Success on Write", Toast.LENGTH_SHORT).show();
+            writer.close();
+        } catch (IOException e) {
+
+        }
+    }
+
+    private void deleteFileAtStorage() {
+        File docsDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        File file = new File(docsDir, FILE_NAME);
+
+        if (file.exists()) {
+            if (file.delete()) {
+                Toast.makeText(this, "Success on delete", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Failure on delete", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(this, "There is no file", Toast.LENGTH_SHORT).show();
+        }
     }
 }
