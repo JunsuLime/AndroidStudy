@@ -7,8 +7,10 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.osori.androidstudy.R;
@@ -37,8 +39,12 @@ import org.osori.androidstudy.R;
 
 public class WhatIsContextActivity extends AppCompatActivity {
 
+    private LinearLayout container;
+
     private Button startActivityButton;
     private Button sendBroadcastButton;
+    private Button inflateButton;
+
     private BroadcastReceiver receiver;
 
     private static final String ACTION_TEST = "osori.test_action";
@@ -79,6 +85,18 @@ public class WhatIsContextActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_TEST);
         registerReceiver(receiver, intentFilter);
+
+
+        // inflate 한 layout 을 현재 layout 에 add 하기 위해 현재 layout 을 가져옴
+        container = (LinearLayout) findViewById(R.id.what_is_context_container);
+
+        inflateButton = (Button) findViewById(R.id.context_inflate_button);
+        inflateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inflateLayout();
+            }
+        });
     }
 
     @Override
@@ -112,5 +130,15 @@ public class WhatIsContextActivity extends AppCompatActivity {
         // sendBroadcast 도 아까 activity 에서 했던 것 처럼 탐색해보자
         // Context 에서 abstract 로 선언 된 method 임을 알 수 있다.
         sendBroadcast(intent);
+    }
+
+    private void inflateLayout() {
+        // Activity 는 Context class 를 상속 받은 class 이다.
+        // LayoutInflater.from( 에는 Context 가 들어가며 여기서 this 는 현재 class 즉
+        // WhatIsContextActivity 의 object 를 말한다.
+        View view = LayoutInflater.from(this).inflate(R.layout.item_inflate_test, null);
+
+        // inflate 가 잘 되었음을 테스트 하기 위해 addView 까지 했다.
+        container.addView(view);
     }
 }
