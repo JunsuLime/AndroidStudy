@@ -17,6 +17,8 @@ import org.osori.androidstudy.week3.CatActivity;
 import org.osori.androidstudy.week4.FloatingViewStartActivity;
 import org.osori.androidstudy.week5.GalleryActivity;
 import org.osori.androidstudy.week6.IntentTestActivity;
+import org.osori.androidstudy.week7.NewActivity;
+import org.osori.androidstudy.week7.WhatIsContextActivity;
 import org.osori.testlibrary.StackTracer;
 
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
             GalleryActivity.class,
             DialActivity.class,
             IntentTestActivity.class,
+            WhatIsContextActivity.class,
     };
 
     public StudyListAdapter(Context context) {
