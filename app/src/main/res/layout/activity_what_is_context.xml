@@ -8,4 +8,10 @@
         android:layout_height="wrap_content"
         android:text="Start Activity!!"/>
 
+    <Button
+        android:id="@+id/context_send_broadcast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Broadcast"/>
+
 </LinearLayout>
