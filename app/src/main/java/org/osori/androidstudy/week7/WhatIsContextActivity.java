@@ -1,12 +1,19 @@
 package org.osori.androidstudy.week7;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -59,6 +66,7 @@ public class WhatIsContextActivity extends AppCompatActivity {
     private Button accessStorageReadButton;
     private Button accessStorageWriteButton;
     private Button accessStorageDeleteButton;
+    private Button getSystemServiceButton;
 
     private BroadcastReceiver receiver;
 
@@ -66,6 +74,10 @@ public class WhatIsContextActivity extends AppCompatActivity {
     private static final String INTENT_TEST = "osori.test_key";
 
     private static final String FILE_NAME = "new_file.txt";
+
+    private final int LOCATION_PERMISSION_REQUEST = 2017;
+    private final int LOCATION_REQUEST_INTERVAL = 1000;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,7 +117,7 @@ public class WhatIsContextActivity extends AppCompatActivity {
 
 
         // inflate 한 layout 을 현재 layout 에 add 하기 위해 현재 layout 을 가져옴옴
-       container = (LinearLayout) findViewById(R.id.what_is_context_container);
+        container = (LinearLayout) findViewById(R.id.what_is_context_container);
 
         inflateButton = (Button) findViewById(R.id.context_inflate_button);
         inflateButton.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +155,15 @@ public class WhatIsContextActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteFileAtStorage();
+            }
+        });
+
+        getSystemServiceButton = (Button) findViewById(R.id.context_system_service_button);
+        getSystemServiceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+                ActivityCompat.requestPermissions(WhatIsContextActivity.this, permissions, LOCATION_PERMISSION_REQUEST);
             }
         });
     }
@@ -221,8 +242,7 @@ public class WhatIsContextActivity extends AppCompatActivity {
             } catch (IOException e) {
 
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "Write plz", Toast.LENGTH_SHORT).show();
         }
     }
@@ -248,13 +268,66 @@ public class WhatIsContextActivity extends AppCompatActivity {
         if (file.exists()) {
             if (file.delete()) {
                 Toast.makeText(this, "Success on delete", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 Toast.makeText(this, "Failure on delete", Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "There is no file", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getMySystemService() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        // Android Device system service 를 context 내의 getSystemService method 를 이용해서 가져올 수 있다.
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Toast.makeText(WhatIsContextActivity.this,
+                String.format("lat: %f, lng: %f", location.getLatitude(), location.getLongitude()),
+                Toast.LENGTH_SHORT).show();
+
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REQUEST_INTERVAL, 0, new LocationListener() {
+//            @Override
+//            public void onLocationChanged(Location location) {
+//                Toast.makeText(WhatIsContextActivity.this,
+//                        String.format("lat: %f, lng: %f", location.getLatitude(), location.getLongitude()),
+//                        Toast.LENGTH_SHORT).show();
+//
+//                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//                locationManager.removeUpdates(this);
+//            }
+//
+//            @Override
+//            public void onStatusChanged(String provider, int status, Bundle extras) {
+//
+//            }
+//
+//            @Override
+//            public void onProviderEnabled(String provider) {
+//
+//            }
+//
+//            @Override
+//            public void onProviderDisabled(String provider) {
+//
+//            }
+//        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (grantResults.length == 0)
+            return;
+
+        switch (requestCode) {
+            case LOCATION_PERMISSION_REQUEST:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    getMySystemService();
+                }
         }
     }
 }

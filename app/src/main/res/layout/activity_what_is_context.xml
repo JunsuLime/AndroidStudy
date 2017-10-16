@@ -39,5 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete!! (storage access)"/>
+    <Button
+        android:id="@+id/context_system_service_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GetSystemService (location)"/>
 
 </LinearLayout>
