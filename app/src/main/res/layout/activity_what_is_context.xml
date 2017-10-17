@@ -45,4 +45,9 @@
         android:layout_height="wrap_content"
         android:text="GetSystemService (location)"/>
 
+    <TextView
+        android:id="@+id/context_information"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

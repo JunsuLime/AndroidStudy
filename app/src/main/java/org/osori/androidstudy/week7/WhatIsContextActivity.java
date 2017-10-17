@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.osori.androidstudy.R;
@@ -65,6 +66,7 @@ public class WhatIsContextActivity extends AppCompatActivity {
     private Button accessStorageWriteButton;
     private Button accessStorageDeleteButton;
     private Button getSystemServiceButton;
+    private TextView contextInformationTextView;
 
     private BroadcastReceiver receiver;
 
@@ -164,6 +166,18 @@ public class WhatIsContextActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(WhatIsContextActivity.this, permissions, LOCATION_PERMISSION_REQUEST);
             }
         });
+
+        contextInformationTextView = (TextView) findViewById(R.id.context_information);
+
+        String viewContext = "view context: " + String.valueOf(contextInformationTextView.getContext());
+        String activityContext = "activity context: " + String.valueOf(this);
+        String baseContext = "base context: " + String.valueOf(getBaseContext());
+        String baseFromApp = "base from app: " + String.valueOf(getApplication().getBaseContext());
+        String appContext = "app context: " + String.valueOf(getApplicationContext());
+        String app = "app: " + String.valueOf(getApplication());
+
+
+        contextInformationTextView.setText(viewContext + "\n" + activityContext + "\n" + baseContext + "\n" + baseFromApp + "\n" + app + "\n" + appContext);
     }
 
     @Override
