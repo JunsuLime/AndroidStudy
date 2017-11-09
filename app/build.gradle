@@ -1,35 +1,79 @@
+// apply - set android plugin
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "25.0.3"
     defaultConfig {
+        // define application pakage name - id in google store
         applicationId "org.osori.androidstudy"
+        // support min sdk
         minSdkVersion 19
+        // up up
         targetSdkVersion 25
+        // app upgrade criteria
         versionCode 1
+        // A string representing the version of the application distributed to the user.
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            // shrinkResource true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    productFlavors {
+        arrogant {
+            applicationId 'org.osori.androidstudy.arrogant'
+        }
+        friendly {
+            applicationId 'org.osori.androidstudy.friendly'
+        }
+        obsequious {
+            applicationId 'org.osori.androidstudy.obsequious'
         }
     }
 }
 
+// add external library
 dependencies {
+    // define fileTree dependency and reference libs all jar files
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
+
+    // if you want to import lib not in maven but local, use files or filetree grammer
+    // compile files('libs/a.jar', 'libs/b.jar')
+    // compile fileTree(dir: 'libs', include: '*.jar')
+
+    // compile 'org.codehaus.groovy:groovy-all:2.4.4@jar'
+    // is same as
+    // compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.4', ext: 'jar'
+
+    // if you want to remove transitive dependency
+    compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.2.0', transitive: false
+
+    // exclude specific library in transitive dependency
+    compile ('com.github.JunsuLime:Android-SectionAdapter:v0.2.0') {
+        exclude group: 'junit'
+        exclude group: 'com.android.support'
+    }
+
+
+    // download junit and reference it in testCompile process
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support:recyclerview-v7:26.0.0'
 
     // week2
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:design:26.0.0'
 
     // how to release my library
     compile 'com.github.JunsuLime:TestLibrary:v1.0.0'
-    compile 'com.github.JunsuLime:Android-RecyclerView-SectionAdapter:v0.1.0'
 
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 
