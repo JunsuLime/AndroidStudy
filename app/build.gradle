@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.3"
+    buildToolsVersion "26.0.1"
     defaultConfig {
         // define application pakage name - id in google store
         applicationId "org.osori.androidstudy"
@@ -63,6 +63,9 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
+    compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
+        transitive = true
+    }
 
     // download junit and reference it in testCompile process
     testCompile 'junit:junit:4.12'

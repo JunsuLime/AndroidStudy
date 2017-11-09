@@ -20,6 +20,7 @@ import org.osori.androidstudy.week6.IntentTestActivity;
 import org.osori.androidstudy.week7.NewActivity;
 import org.osori.androidstudy.week7.WhatIsContextActivity;
 import org.osori.androidstudy.week8.ButterKnifeActivity;
+import org.osori.androidstudy.week9.SwipeViewActivity;
 import org.osori.testlibrary.StackTracer;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
             IntentTestActivity.class,
             WhatIsContextActivity.class,
             ButterKnifeActivity.class,
+            SwipeViewActivity.class,
     };
 
     public StudyListAdapter(Context context) {

@@ -35,6 +35,7 @@
         <activity android:name=".week7.WhatIsContextActivity" />
         <activity android:name=".week7.NewActivity" />
         <activity android:name=".week8.ButterKnifeActivity" />
+        <activity android:name=".week9.SwipeViewActivity" />
 
 
         <!--service class for week4-->
