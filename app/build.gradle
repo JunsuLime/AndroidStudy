@@ -3,14 +3,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.3"
     defaultConfig {
         // define application pakage name - id in google store
         applicationId "org.osori.androidstudy"
         // support min sdk
         minSdkVersion 19
         // up up
-        targetSdkVersion 25
+        targetSdkVersion 26
         // app upgrade criteria
         versionCode 1
         // A string representing the version of the application distributed to the user.
