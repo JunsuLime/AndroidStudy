@@ -36,6 +36,7 @@
         <activity android:name=".week7.NewActivity" />
         <activity android:name=".week8.ButterKnifeActivity" />
         <activity android:name=".week9.SwipeViewActivity" />
+        <activity android:name=".week10.RealmTestActivity" />
 
 
         <!--service class for week4-->

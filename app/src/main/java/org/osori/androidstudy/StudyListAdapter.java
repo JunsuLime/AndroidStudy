@@ -12,6 +12,7 @@ import android.widget.TextView;
 import org.osori.androidstudy.callapp.DialActivity;
 import org.osori.androidstudy.week0.PatternStudyActivity;
 import org.osori.androidstudy.week1.CustomDialogActivity;
+import org.osori.androidstudy.week10.RealmTestActivity;
 import org.osori.androidstudy.week2.ViewPagerActivity;
 import org.osori.androidstudy.week3.CatActivity;
 import org.osori.androidstudy.week4.FloatingViewStartActivity;
@@ -51,6 +52,7 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
             WhatIsContextActivity.class,
             ButterKnifeActivity.class,
             SwipeViewActivity.class,
+            RealmTestActivity.class,
     };
 
     public StudyListAdapter(Context context) {
