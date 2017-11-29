@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     buildToolsVersion "26.0.3"
     defaultConfig {
         // define application pakage name - id in google store
@@ -18,13 +18,47 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
+        debug {
+
+        }
         release {
-            // shrinkResource true
+
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+
+        release {
             minifyEnabled true
+            shrinkResources true
+
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'mips', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+            universalApk true
+        }
+
+        density {
+            enable true
+            reset()
+        }
+
+
+    }
+
     lintOptions {
         abortOnError false
     }
@@ -45,8 +79,15 @@ android {
     }
 }
 
+ext {
+    println 'app ext is called'
+}
+
 // add external library
 dependencies {
+    def SupportLibVer = '26.0.0'
+
+
     // define fileTree dependency and reference libs all jar files
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -67,17 +108,18 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
+    // compile ('group:name:version:ext')
     compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
         transitive = true
     }
 
     // download junit and reference it in testCompile process
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:27.0.0'
-    compile 'com.android.support:recyclerview-v7:27.0.0'
+    compile "com.android.support:appcompat-v7:$SupportLibVer"
+    compile "com.android.support:recyclerview-v7:$SupportLibVer"
 
     // week2
-    compile 'com.android.support:design:27.0.0'
+    compile "com.android.support:design:$SupportLibVer"
 
     // how to release my library
     compile 'com.github.JunsuLime:TestLibrary:v1.0.0'
@@ -92,3 +134,13 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }
+
+task printProperties() {
+    println "build printProperties is called"
+    doLast {
+        println "printProperties.doLast is called"
+        println "$login"
+        println "$password"
+    }
+}
+

@@ -22,6 +22,21 @@ allprojects {
     }
 }
 
+subprojects {
+
+}
+
+ext {
+    println 'project ext is called'
+
+    if (!project.hasProperty('login')) {
+        login = 'junsulime'
+    }
+    if (!project.hasProperty('password')) {
+        password = "Hell world"
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
