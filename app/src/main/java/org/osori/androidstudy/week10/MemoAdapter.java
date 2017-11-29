@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.osori.androidstudy.R;
 import org.osori.androidstudy.week10.model.Memo;
+import org.osori.androidstudy.week10.model.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -107,8 +108,9 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.MemoHolder>
 
         void bind(Memo memo) {
             this.memo = memo;
+            User user = memo.getUsers().first();
 
-            userName.setText("unknown");
+            userName.setText(user.getName());
             memoTitle.setText(memo.getTitle());
             memoContents.setText(memo.getContents());
         }

@@ -1,6 +1,8 @@
 package org.osori.androidstudy.week10.model;
 
 import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
 import io.realm.annotations.PrimaryKey;
 
 /**
@@ -13,6 +15,9 @@ public class Memo extends RealmObject {
     private String title;
 
     private String contents;
+
+    @LinkingObjects("memoList")
+    private final RealmResults<User> users = null;
 
     public String getTitle() {
         return title;
@@ -28,5 +33,9 @@ public class Memo extends RealmObject {
 
     public void setContents(String contents) {
         this.contents = contents;
+    }
+
+    public RealmResults<User> getUsers() {
+        return users;
     }
 }
