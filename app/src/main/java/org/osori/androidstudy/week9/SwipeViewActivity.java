@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
+//import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
 
 import org.osori.androidstudy.R;
 
@@ -29,11 +29,11 @@ public class SwipeViewActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        RecyclerViewSwipeManager manager = new RecyclerViewSwipeManager();
-
-        swipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        swipeRecyclerView.setAdapter(manager.createWrappedAdapter(new SwipeViewAdapter()));
-
-        manager.attachRecyclerView(swipeRecyclerView);
+//        RecyclerViewSwipeManager manager = new RecyclerViewSwipeManager();
+//
+//        swipeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        swipeRecyclerView.setAdapter(manager.createWrappedAdapter(new SwipeViewAdapter()));
+//
+//        manager.attachRecyclerView(swipeRecyclerView);
     }
 }

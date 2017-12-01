@@ -37,6 +37,14 @@
         <activity android:name=".week8.ButterKnifeActivity" />
         <activity android:name=".week9.SwipeViewActivity" />
         <activity android:name=".week10.RealmTestActivity" />
+        <activity
+            android:name=".week11.NotificationResultActivity"
+            android:parentActivityName=".week11.NotificationActivity">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".week11.NotificationActivity" />
+        </activity>
+        <activity android:name=".week11.NotificationActivity" />
 
 
         <!--service class for week4-->
