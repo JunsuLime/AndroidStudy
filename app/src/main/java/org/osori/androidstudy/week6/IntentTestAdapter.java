@@ -12,7 +12,6 @@ import android.widget.TextView;
 import org.osori.androidstudy.MainActivity;
 import org.osori.androidstudy.R;
 import org.osori.androidstudy.Utils;
-import org.osori.testlibrary.StackTracer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,7 +78,6 @@ public class IntentTestAdapter extends RecyclerView.Adapter<IntentTestAdapter.St
                     intent.setFlags(intentFlag);
                     mContext.startActivity(intent);
 
-                    StackTracer.printTrace(TAG);
                 }
             });
         }

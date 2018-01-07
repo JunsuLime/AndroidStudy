@@ -31,7 +31,7 @@
         <activity android:name=".week4.FloatingViewStartActivity" />
         <activity android:name=".week5.GalleryActivity" />
         <activity android:name=".week6.IntentTestActivity" />
-        <activity android:name=".callapp.DialActivity" />
+        <activity android:name=".test.DialActivity" />
         <activity android:name=".week7.WhatIsContextActivity" />
         <activity android:name=".week7.NewActivity" />
         <activity android:name=".week8.ButterKnifeActivity" />

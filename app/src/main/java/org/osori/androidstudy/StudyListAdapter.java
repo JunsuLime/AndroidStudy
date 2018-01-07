@@ -9,22 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.osori.androidstudy.callapp.DialActivity;
+import org.osori.androidstudy.test.DialActivity;
 import org.osori.androidstudy.week0.PatternStudyActivity;
 import org.osori.androidstudy.week1.CustomDialogActivity;
 import org.osori.androidstudy.week10.RealmTestActivity;
 import org.osori.androidstudy.week11.NotificationActivity;
-import org.osori.androidstudy.week11.NotificationResultActivity;
 import org.osori.androidstudy.week2.ViewPagerActivity;
 import org.osori.androidstudy.week3.CatActivity;
 import org.osori.androidstudy.week4.FloatingViewStartActivity;
 import org.osori.androidstudy.week5.GalleryActivity;
 import org.osori.androidstudy.week6.IntentTestActivity;
-import org.osori.androidstudy.week7.NewActivity;
 import org.osori.androidstudy.week7.WhatIsContextActivity;
 import org.osori.androidstudy.week8.ButterKnifeActivity;
 import org.osori.androidstudy.week9.SwipeViewActivity;
-import org.osori.testlibrary.StackTracer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,7 +92,6 @@ public class StudyListAdapter extends RecyclerView.Adapter<StudyListAdapter.Stud
                     Intent intent = new Intent(mContext, studyActivity);
                     mContext.startActivity(intent);
 
-                    StackTracer.printTrace(TAG);
                 }
             });
         }

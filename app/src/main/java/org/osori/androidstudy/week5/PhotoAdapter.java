@@ -86,7 +86,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
         private void bind(Photo photo) {
             this.photo = photo;
 //            GlideApp
-
+//            photoImage.setimage
             Glide.with(mContext).load(photo.getPath()).into(photoImage);
             photoPath.setText(photo.getPath());
         }

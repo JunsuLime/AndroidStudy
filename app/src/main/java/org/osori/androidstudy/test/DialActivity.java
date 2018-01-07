@@ -1,4 +1,4 @@
-package org.osori.androidstudy.callapp;
+package org.osori.androidstudy.test;
 
 import android.Manifest;
 import android.content.Context;
@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
-import android.telecom.Call;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -21,7 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+
 import org.osori.androidstudy.R;
+
+import retrofit2.Retrofit;
 
 /**
  * Created by junsu on 2017-07-30.
@@ -29,6 +31,11 @@ import org.osori.androidstudy.R;
 
 public class DialActivity extends AppCompatActivity {
 
+    public void test () {
+        Retrofit.Builder builder = null;
+        ObservableScrollViewCallbacks a = null;
+
+    }
 
     private static final String TAG = DialActivity.class.getSimpleName();
     private String number = "";
